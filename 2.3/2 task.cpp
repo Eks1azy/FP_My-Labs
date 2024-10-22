@@ -1,7 +1,7 @@
 //LIFO (last in first out)  where N are elements that are added to the queue, M are elements that are removed from the queue, Size are maximum elements in queue 
 //Structure: stack  
 //Representation: coherent
-//Type: valid.
+//Type: valid
 #include <iostream>
 using namespace std;
 
