@@ -1,35 +1,36 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-int main()
-{
-	bool result = true;
+int main() {
+    bool result = true;
 
-	int nA;
-	int nB;
+    int nA = 84;//0101 0100
+    int nB = 83;//0101 0011
 
-	cout << "Your first number: ";
-	cin >> nA;
-
-	cout << "Your second number: ";
-	cin >> nB;
-
-	int size = sizeof(int) * 8;
-
-	for (int i = 0; i < size; i++)
+    int size = sizeof(int) * 8;
+    for (int i = size - 1; i >= 0; i--)
     {
-		int nBA = nA & (1 << i);
-		int nBB = nB & (1 << i);
-		if (nBA >= nBB){                  
-			result = false;
-			cout << nA << " no less than " << nB;
-			break;
-		}
-		else if (nBA < nBB)
-    {
-			cout << nA << " less than " << nB;
-			break;
-		}
-	}
+        int nBA = nA & (1 << i);
+        int nBB = nB & (1 << i);
 
+        if (nBA > nBB)
+        {
+            result = false;
+            break;
+        }
+        else if (nBA < nBB)
+        {
+            break;
+        }
+    }   
+
+    if (result) {
+        cout << nA << " is less than " << nB << endl;
+    }
+    else 
+    {
+        cout << nA << " is not less than " << nB << endl;
+    }
+
+    return 0;
 }
