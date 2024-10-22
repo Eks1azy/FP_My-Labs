@@ -4,8 +4,13 @@ using namespace std;
 int main() {
     bool result = true;
 
-    int nA = 84;//0101 0100
-    int nB = 83;//0101 0011
+    int nA;
+    cout << " your first number is: ";
+    cin >> nA;
+    
+    int nB;
+    cout << " your second number is: ";
+    cin >> nB;
 
     int size = sizeof(int) * 8;
     for (int i = size - 1; i >= 0; i--)
