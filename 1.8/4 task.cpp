@@ -1,27 +1,34 @@
-**soon**
-
 #include<iostream>
 using namespace std;
 
 int main()
 {
-	bool result = true;
+    int nA;
+    int nB;
 
-	int nA;
-	int nB;
+    cout << " your first number is: ";
+    cin >> nA;
 
-	cout << "Your first number: ";
-	cin >> nA;
-	cout << "Your second number: ";
-	cin >> nB;
+    cout << " your second number is: ";
+    cin >> nB;
 
-	int size = sizeof(int) * 8;
-	for (int i = 0; i < size; i++) {
-		int nBA = nA & (1 << i);
-		int nBB = nB & (1 << i);
-		int Sum;
-		Sum = nBB + nBA;
-		cout << Sum << endl;
-	}
-	
+    int sum = 0;  
+    int carry = 0;//змінна для зберігання переносу
+    int size = sizeof(int) * 8; 
+
+    for (int i = 0; i < size; i++)
+    {
+        int bitnA = (nA >> i) & 1; 
+        int bitNB = (nB >> i) & 1; 
+  
+        int BitSum = bitnA + bitNB + carry;//обчислюємо суму бітів з урахуванням переносу
+
+        sum |= (BitSum & 1) << i;//записуємо результат суми в потрібний біт "OR"
+
+        // Оновлюємо перенос
+        carry = (BitSum >> 1) & 1;
+    }
+    cout << nA << '+' << nB << '=' << sum << endl;
+
+    return 0;
 }
