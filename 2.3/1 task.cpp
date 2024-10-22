@@ -1,4 +1,7 @@
-//FIFO (FIRST IN FIRST OUT) where N are elements that are added to the queue, M are elements that are removed from the queue, Size are maximum elements in queue  
+//FIFO (FIRST IN FIRST OUT) where N are elements that are added to the queue, M are elements that are removed from the queue, Size are maximum elements in queue 
+//Structure: queue 
+//Representation: vector 
+//Type: symbolic
 #include <iostream>
 using namespace std;
 
