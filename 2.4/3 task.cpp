@@ -1,104 +1,80 @@
-**SOON**
-
-
-#include <string>
 #include <iostream>
+#include <string>
+
 using namespace std;
 
-//first sub
-void procArray(int arr[5][6], int M, int N)
+void processMatrix(int array[6][5], int M, int N) 
 {
-	int maxVal = arr[0][0];//
-	int maxRow = 0;//
-	int maxCol = 0;//
+    int maxElement = array[0][0];
+    int maxRow = 0;
+   
+    //Знаходимо рядок з максимальним елементом
+    for (int i = 0; i < M; ++i) 
+    {
+        for (int j = 0; j < N; ++j) 
+        {
+            if (array[i][j] > maxElement) 
+            {
+                maxElement = array[i][j];
+                maxRow = i;
+            }
+        }
+    }
 
-	//find max element
-	for (int i = 0; i < M; ++i)//find max M
-	{
-		for (int j = 0; j < N; ++j)//find max N
-		{
-			if (arr[i][j] > maxVal)
-			{
-				maxVal = arr[i][j];
-				maxRow = i;
-				maxCol = j;
-			}
-		}
-	}
-
-	int temp = arr[0][0];
-	arr[0][0] = arr[maxRow][maxCol];
-	arr[maxRow][maxCol] = temp;
+    for (int j = 0; j < N; ++j) 
+    {
+        array[maxRow][j] = 1;//заповнює весь рядок з максимальним елементом одиницями
+    }
 }
 
-//sec sub
-void procString(char str[])
+string processString(const string& str) 
 {
-	char evenPos[100];//array for even
-	char oddPos[100];//array for odd 
-	int evenIdx = 0;
-	int oddIdx = 0;
-	int i = 0;
+    string result;
 
-	while (str[i] != '\0')
-	{
-		if (i % 2 == 0)
-		{
-			evenPos[evenIdx++] = str[i];//add to even arrey
-		}
-		else
-		{
-			oddPos[oddIdx++] = str[i];//add to odd array
-		}
-		i++;
-	}
-	evenPos[evenIdx] = '\0';//endl 
-	oddPos[oddIdx] = '\0';   
-
-	//association odd and even	
-
-	int j = 0;
-
-	while (evenPos[j] != '\0')
-	{
-		str[i++] = evenPos[j++];
-	}
-
-	j = 0;
-
-	while (oddPos[j] != '0')
-	{
-		str[i++] = oddPos[j++];
-	}
-
-	str[i] = '\0';//endl
+    for (int i = 0; i < str.length(); i++)//перебирає всі символи рядка str
+    {
+        if (str[i] == 'A')
+        {
+            result += "**";//Замінюємо 'A' на "**"
+        }
+        else 
+        {
+            result += str[i];//Додаємо інші символи без змін
+        }
+    }
+    return result;
 }
 
-int main()
+int main() 
 {
-	int array[5][6] = 
-	{
-	{5,3,8,6,7,2},
-	{4,12,1,10,11,17},
-	{1,13,15,16,9,21},
-	{18,19,21,14,15,16},
-	{23,5,6,4,14,22}
-	};
+    const int M = 6;
+    const int N = 5;
+    int matrix[M][N] = {
+        {1, 2, 3, 4, 5},
+        {9, 8, 7, 6, 5},
+        {5, 4, 3, 2, 1},
+        {1, 3, 5, 7, 9},
+        {6, 4, 2, 8, 10},
+        {0, 2, 4, 6, 8}
+    };
 
-	char str[100] = "absdef";
+    processMatrix(matrix, M, N);
 
-	procArray(array, 5, 6);
+    cout << "Obroblyniy dvovumirnuy masuv:" << endl;
+    for (int i = 0; i < M; ++i)
+    {
+        for (int j = 0; j < N; ++j) 
+        {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
 
-	cout << "Після обробки масиву:" << endl;
-	for (int i = 0; i < 5; ++i)
-	{
-		for (int j = 0; j < 6; ++j)
-		{
-			cout << array[i][j];
-		}
-		cout << endl;
-	}
+    string String = "ABBACCAD";
 
-	procString(str);
-	cout << "Після обробки рядка: " << str << endl;
+    string resultString = processString(String);
+
+    cout << "Obroblenuy riadok: " << resultString << endl;
+
+    return 0;
 }
